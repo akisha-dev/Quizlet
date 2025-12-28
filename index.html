@@ -10,13 +10,11 @@
             <p>Welcome to Quizlet</p>
             <p>Take a quiz to test your knowledge</p>
             <p>Press Start to start the quiz</p>
-            <button class="start-button" onclick = Display()>Start</button>
+            <button class="start-button" onclick =" QDisplay(); updateTimer()">Start</button>
+            <div class="timer-js"></div>
             
         </div>
         <div class="question-display">
-            <p class="question-js"></p>
-            <input type="radio"name="option-a" class="a-js">
-            <input type="radio"name="option-b" class="b-js">
 
 
         </div>
@@ -34,15 +32,37 @@
             for(i=0;i<QuesOptions.question.length;i++){        
          quOpdisplay+=`<p class="question-js">${QuesOptions.question[i]}</p>
             <input type="radio" id="option-a" name="option" value="${QuesOptions.a[i]}">
-            <label for = "option-a">${QuesOptions.a[i]}</label> 
+            <label for = "option-a">${QuesOptions.a[i]}</label> <br>
             <input type="radio" id="option-b" name="option" class="${QuesOptions.b[i]}">
-            <label for="option-b">${QuesOptions.b[i]}</label>
+            <label for="option-b">${QuesOptions.b[i]}</label><br>
             <input type="radio" id="option-c" name="option" class="${QuesOptions.c[i]}">
-            <label for="option-c">${QuesOptions.c[i]}</label>
+            <label for="option-c">${QuesOptions.c[i]}</label><br>
             <input type="radio" id="option-d" name="option" class="${QuesOptions.d[i]}">
-            <label for="option-d">${QuesOptions.d[i]}</label>`}
+            <label for="option-d">${QuesOptions.d[i]}</label><br>`}
+
+            function QDisplay(){
+                document.querySelector('.question-display')
+                .innerHTML =quOpdisplay;
+            }
+           let CurrentTime = 60000;//1mins in milliseconds
+           document.querySelector('.timer-js')
+           .innerHTML=CurrentTime/1000;
+           
+           function updateTimer(){
+           let Interval= setInterval(()=>{
+                CurrentTime-=1000;
+                document.querySelector('.timer-js')
+                .innerHTML=CurrentTime/1000
+
+               if(CurrentTime<=0){
+                clearInterval(Interval);
+                document.querySelector('.timer-js')
+                .innerHTML= 'TEST OVER';
+
+               } 
+            },1000)}
                         
-         console.log(quOpdisplay);
+         
    
         </script>
       
