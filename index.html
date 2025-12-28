@@ -10,17 +10,41 @@
             <p>Welcome to Quizlet</p>
             <p>Take a quiz to test your knowledge</p>
             <p>Press Start to start the quiz</p>
-            <button class="start-button" onclick = questionDisplay()>Start</button>
+            <button class="start-button" onclick = Display()>Start</button>
             
         </div>
         <div class="question-display">
             <p class="question-js"></p>
-            <input type="radio"name="option-a">
-            <input type="radio"name="option-b">
+            <input type="radio"name="option-a" class="a-js">
+            <input type="radio"name="option-b" class="b-js">
 
 
         </div>
         <div class="result-display"></div>
+        <script>
+             let QuesOptions={question:['whats the full form of AI?','Machine Learning is a subset of'],
+                              a:['Artificial Intelligence','Data Science'] ,
+                              b:['Autonomous Intelligenece','Artificial Intelligence'],
+                              c:['Advanced Integration','Deep Learning'],
+                              d:['Algorithmic Interface','Deep Learning'] }
+                   
+            
+            let i =0;
+            let quOpdisplay='';
+            for(i=0;i<QuesOptions.question.length;i++){        
+         quOpdisplay+=`<p class="question-js">${QuesOptions.question[i]}</p>
+            <input type="radio" id="option-a" name="option" value="${QuesOptions.a[i]}">
+            <label for = "option-a">${QuesOptions.a[i]}</label> 
+            <input type="radio" id="option-b" name="option" class="${QuesOptions.b[i]}">
+            <label for="option-b">${QuesOptions.b[i]}</label>
+            <input type="radio" id="option-c" name="option" class="${QuesOptions.c[i]}">
+            <label for="option-c">${QuesOptions.c[i]}</label>
+            <input type="radio" id="option-d" name="option" class="${QuesOptions.d[i]}">
+            <label for="option-d">${QuesOptions.d[i]}</label>`}
+                        
+         console.log(quOpdisplay);
+   
+        </script>
       
     </body>
-</html>
+</html
