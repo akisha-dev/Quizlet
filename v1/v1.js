@@ -34,7 +34,7 @@
                 document.querySelector('.timer-js')
                 .innerHTML= 'TEST OVER';
                 
-                window.displayScore();
+               displayScore(true);
 
 
                } 
@@ -43,28 +43,28 @@
  
 
 
-   window.displayScore = function() {
+ window.displayScore = function(isAutoSubmit = false) {
     let totalAttempted = 0;
     let correctAns = 0;
     for(let i = 0; i < correct.length; i++) {
-        let checkedOption = document.querySelector(`input[name="option${i}"]:checked`);
-        if(checkedOption) {
-            totalAttempted++;
-            if(checkedOption.value === correct[i]) {
-                correctAns++;
-            }}
+let checkedOption = document.querySelector(`input[name="option${i}"]:checked`);
+     if(checkedOption) {
+       totalAttempted++;
+    if(checkedOption.value === correct[i]) {
+      correctAns++;
+            }
+        }
     }
-    let resultHTML = '';
-    if(totalAttempted === correct.length) {
-     let percentage = Math.round((correctAns / correct.length) * 100);
-     resultHTML = `<h2>YOU SCORED ${correctAns} OUT OF ${correct.length}!</h2>
-     <p>Percentage: ${percentage}%</p>`;
+if(isAutoSubmit || totalAttempted === correct.length) {
+localStorage.setItem('quizScore', correctAns);
+localStorage.setItem('totalQuestions', correct.length);
+localStorage.setItem('totalAttempted', totalAttempted);
+localStorage.setItem('quizCompleted', 'true');
+ window.location.href = 'Results.html';
     } else {
-        resultHTML = `<p style="color: red;">Please attempt all questions!! 
-        (${totalAttempted}/${correct.length} answered)</p>`;
+        alert(`Please attempt all questions! (${totalAttempted}/${correct.length} answered)`);
+        return false;
     }
-    document.querySelector('.result-display')
-    .innerHTML = resultHTML;
 }
 
        
