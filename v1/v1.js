@@ -18,35 +18,55 @@
     document.querySelector('.question-display').innerHTML = quOpdisplay;
 }
 
-            function QDisplay(){
-                document.querySelector('.question-display')
-                .innerHTML =quOpdisplay;
-            }
-           let CurrentTime = 900000;//1mins in milliseconds
+
+           let CurrentTime = 900000;//15mins in milliseconds
            document.querySelector('.timer-js')
-           .innerHTML=CurrentTime/1000;
+           .innerHTML=(CurrentTime/60000).toFixed(2);
            
         window.updateTimer = function() {
            let Interval= setInterval(()=>{
                 CurrentTime-=1000;
                 document.querySelector('.timer-js')
-                .innerHTML=CurrentTime/1000
+                .innerHTML=(CurrentTime/60000).toFixed(2);
 
                if(CurrentTime<=0){
                 clearInterval(Interval);
                 document.querySelector('.timer-js')
                 .innerHTML= 'TEST OVER';
+                
+                window.displayScore();
+
 
                } 
             },1000)}
 
-        let correctAns = 0;
-        function CheckforCorrect(){
-        for(let i=0;i<correct.length;i++){
-        let checkedOption=document.querySelector(`input[name="option${i}]:checked`);
-            if(checkedOption&&checkedOption.value===correct[i]){
+ 
+
+
+   window.displayScore = function() {
+    let totalAttempted = 0;
+    let correctAns = 0;
+    for(let i = 0; i < correct.length; i++) {
+        let checkedOption = document.querySelector(`input[name="option${i}"]:checked`);
+        if(checkedOption) {
+            totalAttempted++;
+            if(checkedOption.value === correct[i]) {
                 correctAns++;
-                  console.log(correctAns);
             }}
-        }
+    }
+    let resultHTML = '';
+    if(totalAttempted === correct.length) {
+     let percentage = Math.round((correctAns / correct.length) * 100);
+     resultHTML = `<h2>YOU SCORED ${correctAns} OUT OF ${correct.length}!</h2>
+     <p>Percentage: ${percentage}%</p>`;
+    } else {
+        resultHTML = `<p style="color: red;">Please attempt all questions!! 
+        (${totalAttempted}/${correct.length} answered)</p>`;
+    }
+    document.querySelector('.result-display')
+    .innerHTML = resultHTML;
+}
+
+       
+        
         
