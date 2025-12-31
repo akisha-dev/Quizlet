@@ -13,10 +13,7 @@ if(localStorage.getItem('quizCompleted') === 'true') {
     `;
     
     document.querySelector('.result-display').innerHTML = resultHTML;
-    localStorage.removeItem('quizCompleted');
-    localStorage.removeItem('quizScore');
-    localStorage.removeItem('totalQuestions');
-    localStorage.removeItem('totalAttempted');
+
     
 } else{
     document.querySelector('.result-display').innerHTML = 

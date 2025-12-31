@@ -48,6 +48,7 @@
     let correctAns = 0;
     for(let i = 0; i < correct.length; i++) {
 let checkedOption = document.querySelector(`input[name="option${i}"]:checked`);
+    localStorage.setItem(`userAns${i}`,checkedOption.value);
      if(checkedOption) {
        totalAttempted++;
     if(checkedOption.value === correct[i]) {
