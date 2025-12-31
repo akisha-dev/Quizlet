@@ -1,4 +1,4 @@
-import {QuesOptions, correct } from "./data.js";
+import {QuesOptions, correct } from "../v1/data.js";
 let i=0;
 let reviewHtml = '';
 if(localStorage.getItem('quizCompleted')==='true'){
