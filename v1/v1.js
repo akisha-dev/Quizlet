@@ -1,4 +1,19 @@
-          import { QuesOptions,correct } from "./data.js";
+import { QuesOptions,correct } from "./data.js";
+let saved = localStorage.getItem('addedQuestions');
+if(saved) {
+    let added = JSON.parse(saved);
+    for(let i = 0; i < added.question.length; i++) {
+        QuesOptions.question.push(added.question[i]);
+        QuesOptions.a.push(added.a[i]);
+        QuesOptions.b.push(added.b[i]);
+        QuesOptions.c.push(added.c[i]);
+        QuesOptions.d.push(added.d[i]);
+        correct.push(added.correct[i]);
+    }
+    
+    console.log(`Loaded ${added.question.length} added questions`);
+}
+
           
           let i =0;
             let quOpdisplay='';
