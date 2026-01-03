@@ -33,17 +33,18 @@ if(saved) {
     document.querySelector('.question-display').innerHTML = quOpdisplay;
 }
 
+        let CurrentTime = 900000;//15mins in milliseconds
 
-           let CurrentTime = 900000;//15mins in milliseconds
            document.querySelector('.timer-js')
            .innerHTML=(CurrentTime/60000).toFixed(2);
            
         window.updateTimer = function() {
            let Interval= setInterval(()=>{
-                CurrentTime-=1000;
-                document.querySelector('.timer-js')
-                .innerHTML=(CurrentTime/60000).toFixed(2);
-
+            CurrentTime-=1000;
+            let mins = Math.floor(CurrentTime/60000);
+            let secs = Math.floor((CurrentTime%60000)/1000);
+            document.querySelector('.timer-js')
+            .innerHTML = mins + ':' + secs.toString().padStart(2, '0');
                if(CurrentTime<=0){
                 clearInterval(Interval);
                 document.querySelector('.timer-js')
@@ -63,9 +64,10 @@ if(saved) {
     let correctAns = 0;
     for(let i = 0; i < correct.length; i++) {
 let checkedOption = document.querySelector(`input[name="option${i}"]:checked`);
-    localStorage.setItem(`userAns${i}`,checkedOption.value);
      if(checkedOption) {
        totalAttempted++;
+           localStorage.setItem(`userAns${i}`,checkedOption.value);
+
     if(checkedOption.value === correct[i]) {
       correctAns++;
             }

@@ -24,3 +24,6 @@ localStorage.removeItem('quizCompleted');
     .innerHTML='Attempt the Quiz to review Your Answers';
 
 }
+window.goHome = function() {
+    window.location.href = '../v1/index.html';
+}
